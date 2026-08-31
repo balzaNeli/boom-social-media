@@ -7,7 +7,9 @@
     background: var(--surface-raised, #FFFFFF);
     border-bottom: 1px solid var(--boom-ink);
 }
-
+/*transition: background var(--duration-fast, 180ms) var(--ease-out),
+                border-color var(--duration-fast, 180ms) var(--ease-out),
+                transform var(--duration-fast, 180ms) var(--ease-out);*/
 .header-nav ul{
     display: flex;
     align-items: center;
@@ -18,9 +20,19 @@
 
 li{
     list-style-type: none;
+    transition: background var(--duration-fast, 180ms) var(--ease-out),
+                border-color var(--duration-fast, 180ms) var(--ease-out),
+                transform var(--duration-fast, 180ms) var(--ease-out);
+                text-decoration: none;
+    color: var(--text);
 }
 
 a{
     text-decoration: none;
     color: var(--text);
+    
+}
+
+li:hover{
+    transform: translateY(-1px);
 }

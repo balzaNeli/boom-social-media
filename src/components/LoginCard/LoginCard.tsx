@@ -10,7 +10,7 @@ export default function LoginCard() {
       <div className="login-card-box">
         <div className="login-card">
           <header className="login-card-header">
-            <h1 className="login-card-title">Login</h1>
+            <h1 className="login-card-title">Seja Bem-Vindo!</h1>
           </header>
 
           <div className="login-card-content">
@@ -38,11 +38,11 @@ export default function LoginCard() {
                 />
               </div>
 
-              <button type="submit" onClick={botao}>
+              <button id="button" type="submit" onClick={botao}>
                 Entrar
               </button>
             </form>
-            <Link to="/">Início</Link>
+            <button id="botaoAnonimo"><Link to="/">Continuar Anônimo</Link></button>
           </div>
         </div>
       </div>

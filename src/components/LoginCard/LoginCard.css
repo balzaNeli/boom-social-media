@@ -5,9 +5,6 @@
   min-height: 100vh; /* Garante que o container ocupe toda a altura da tela */
 }
 
-
-
-
 .login-card-box {
   width: 100%;
   max-width: 420px;
@@ -48,9 +45,9 @@ input:focus {
   border-color: black;
   outline: none; 
 }
-button {
+#button  {
   width: 100%;
-  padding: 12px;
+  padding: 14px;
   background-color: var(--boom-sage-bg);
   color: white;
   border: none;
@@ -59,9 +56,28 @@ button {
   font-weight: bold;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  margin-top: 30px;
 }
 
 
-button:hover {
+#button:hover {
   background-color: rgba(33, 39, 34, 0.774);
+}
+
+#botaoAnonimo{
+  flex: 1;
+  padding: 10px 6px;
+  margin-top: 12px;
+  margin-left: 12.59rem;
+  background-color: var(--boom-cream-soft);
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+  font-weight: bold;
+  border-radius: 4px;
+
+}
+
+#botaoAnonimo:hover{
+  background-color: rgb(250, 231, 191);
+  
 }

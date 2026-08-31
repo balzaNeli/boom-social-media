@@ -1,5 +1,5 @@
 
-.container {
+.posts-container {
     display: flex;
     justify-content: center;
     align-items: flex-start;
@@ -15,7 +15,7 @@
     flex-direction: column;
     gap: 0;
     width: 100%;
-    max-width: 560px;
+    max-width: 680px;
     background: var(--boom-cream-soft, #FFFBF5);
     border: 1px solid var(--boom-ink);
     border-radius: var(--radius-md, 18px);
@@ -155,7 +155,7 @@
 }
 
 @media (max-width: 600px) {
-    .container {
+    .posts-container {
         padding: 16px 12px;
     }
 

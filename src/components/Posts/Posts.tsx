@@ -4,7 +4,7 @@ import Image from "../../assets/image.jpg";
 export default function Posts() {
   return (
     <>
-      <div className="container">
+      <div className="posts-container">
         <article className="post-card">
           <header className="post-card-header">
             <img src={Tux} alt="Imagem do post" className="post-card-image" />

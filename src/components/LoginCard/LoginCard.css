@@ -1,0 +1,67 @@
+.login-card-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh; /* Garante que o container ocupe toda a altura da tela */
+}
+
+
+
+
+.login-card-box {
+  width: 100%;
+  max-width: 420px;
+  
+  /* Mantém a altura presa estritamente ao conteúdo */
+  height: fit-content;
+  max-height: fit-content;
+  align-self: center;
+  
+  margin: 40px auto;
+  padding: 28px 32px;
+  border: 1px solid var(--boom-ink);
+  border-radius: 8px;
+  background: var(--boom-cream-soft, #FFFBF5);
+  box-shadow: var(--shadow-md, 0 8px 24px rgba(44,42,38,0.08));
+  box-sizing: border-box;
+}
+.login-card-content form > div {
+  margin-bottom: 14px;
+}
+label {
+  display: block;
+  margin-bottom: 8px;
+  color: #333333;
+  font-weight: bold;
+  font-size: 14px;
+}
+input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px; 
+  box-sizing: border-box;
+  transition: border-color 0.3s ease;
+}
+input:focus {
+  border-color: black;
+  outline: none; 
+}
+button {
+  width: 100%;
+  padding: 12px;
+  background-color: var(--boom-sage-bg);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+
+button:hover {
+  background-color: rgba(33, 39, 34, 0.774);
+}

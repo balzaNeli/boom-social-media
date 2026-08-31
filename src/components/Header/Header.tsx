@@ -14,6 +14,7 @@ export default function Header(){
                     <ul>
                         <li><Link to="/">Início</Link></li>
                         <li><Link to="/sobre">Sobre</Link></li>
+                        <li><Link className="login-link" to="/login">Login</Link></li>
                     </ul>
                 </nav>
 

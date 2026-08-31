@@ -1,5 +1,5 @@
 import './Header.css'
-
+import { Link } from 'react-router-dom';
 export default function Header(){
     return(
         <>
@@ -12,9 +12,11 @@ export default function Header(){
 
                 <nav className='header-nav'>
                     <ul>
-                        <li><a href="#home">Início</a></li>
+                        <li><Link to="/">Início</Link></li>
+                        <li><Link to="/sobre">Sobre</Link></li>
                     </ul>
                 </nav>
+
                 
                 
 

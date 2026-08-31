@@ -1,11 +1,16 @@
 .header{
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    height: var(--header-height);
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 10px;
-    padding: 4px 100px;
+    padding: 0 24px;
     background: var(--surface-raised, #FFFFFF);
     border-bottom: 1px solid var(--boom-ink);
+    box-sizing: border-box;
 }
 /*transition: background var(--duration-fast, 180ms) var(--ease-out),
                 border-color var(--duration-fast, 180ms) var(--ease-out),

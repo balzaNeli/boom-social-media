@@ -52,6 +52,9 @@
   --duration-base: 280ms;
   --duration-slow: 420ms;
 
+  --header-height: 56px;
+  --sidebar-width: 220px;
+
 
   font: 17px / 1.6 var(--font-sans);
   letter-spacing: -0.011em;

@@ -10,11 +10,11 @@ Cinco opções criativas (teoricamente disponíveis, curtas e de pronúncia glob
 
 **Nome escolhido: Boom.**
 
-O nome lembra o centro de um lar: o lugar onde as pessoas se juntam por calor, histórias e conversa de verdade. Uma sílaba só, som suave, fácil de pronunciar na maioria dos idiomas. Soa humano e concreto, diferente dos nomes abstratos e agitados das redes de hoje.
+
 
 ### 2. Slogan
 
-> **"Reúna-se em torno do que importa."**
+> **"Boom boom"**
 
 ### 3. O porquê (missão)
 

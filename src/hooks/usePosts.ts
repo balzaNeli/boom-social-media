@@ -20,7 +20,7 @@ export function usePosts(params?: PostsQueryParams): UsePostsReturn {
   const [error, setError] = useState<string | null>(null);
 
   const fetchPosts = useCallback(async () => {
-    try {
+    try { 
       setLoading(true);
       setError(null);
       const data = await getPosts(params);

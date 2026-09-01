@@ -42,7 +42,8 @@ export default function LoginCard() {
                 Entrar
               </button>
             </form>
-            <button id="botaoAnonimo"><Link to="/">Continuar Anônimo</Link></button>
+            
+            <Link to="/"><button id="botaoAnonimo">Continuar Anônimo</button></Link>
           </div>
         </div>
       </div>

@@ -11,6 +11,14 @@ node_modules
 dist
 dist-ssr
 *.local
+# SQLite
+*.sqlite
+*.sqlite-journal
+*.sqlite-wal
+*.sqlite-shm
+*.db
+database.sqlite
+server/database.sqlite
 
 # Editor directories and files
 .vscode/*

@@ -1,48 +1,77 @@
+import { usePaginatedPosts } from "../../hooks/usePosts";
+import PostList from "./PostList";
+import PostSkeletonList from "./PostSkeleton";
 import "./Posts.css";
-import Tux from "../../assets/tux.png";
-import Image from "../../assets/image.jpg";
-export default function Posts() {
+
+type PostsProps = {
+  limit?: number;
+  circleId?: string;
+};
+
+/**
+ * Feed de posts pronto para API SQLite.
+ * - Usa paginação (limit padrão 2 para demonstrar "Carregar mais" com 4 mocks)
+ * - Estados: loading (skeleton), error (retry), empty (PostList trata), hasMore (botão)
+ * - Troca mock -> API real via VITE_API_URL em src/services/postService.ts
+ */
+export default function Posts({ limit = 2, circleId }: PostsProps) {
+  const { posts, loading, loadingMore, error, hasMore, total, loadMore, refetch } =
+    usePaginatedPosts({ limit, circleId });
+
+  if (loading) {
+    return <PostSkeletonList count={limit} />;
+  }
+
+  if (error) {
+    return (
+      <div className="posts-feed">
+        <div className="posts-error" role="alert">
+          <p>Não foi possível carregar as faíscas: {error}</p>
+          <button type="button" onClick={refetch}>
+            Tentar novamente
+          </button>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <>
-      <div className="posts-container">
-        <article className="post-card">
-          <header className="post-card-header">
-            <img src={Tux} alt="Imagem do post" className="post-card-image" />
-            <div className="post-meta">
-              <h3 className="post-author">Nome do Usuário</h3>
-              <time>Há 69 horas</time>
-            </div>
-          </header>
+      <PostList posts={posts} />
 
-          <div className="post-card-content">
-            <p className="post-text">
-              Caraca eu adoro usar linux quando estou comendo cheetos e sujando meu teclado todinho! 🤤 #linux #cheetos #teclado sujo
-            </p>
-            <img
-              src={Image}
-              alt="Descrição da imagem para acessibilidade"
-              className="post-image"
-            ></img>
-          </div>
+      {(hasMore || total > 0) && (
+        <div className="posts-feed-footer">
+          <span className="posts-total">
+            {posts.length} de {total} faísca{total !== 1 ? "s" : ""}
+          </span>
 
-          <footer className="post-footer">
-            <div className="post-actions">
-              <button type="button" aria-label="Curtir postagem">
-                ❤️
-              </button>
-              <button type="button" aria-label="Comentar postagem">
-                💬
-              </button>
-              <button type="button" aria-label="Compartilhar postagem">
-                🔄
-              </button>
+          {hasMore ? (
+            <button
+              type="button"
+              className="load-more-btn"
+              onClick={loadMore}
+              disabled={loadingMore}
+              aria-busy={loadingMore}
+            >
+              {loadingMore ? "Carregando..." : "Carregar mais"}
+            </button>
+          ) : (
+            <span className="posts-total">Você viu tudo por enquanto ✨</span>
+          )}
+
+          {loadingMore && (
+            <div style={{ width: "100%", maxWidth: "680px" }}>
+              <PostSkeletonList count={1} />
             </div>
-            <div className="post-stats">
-              <span>67 curtidas</span>
-            </div>
-          </footer>
-        </article>
-      </div>
+          )}
+        </div>
+      )}
     </>
   );
 }
+
+// Re-exports para uso granular
+export { default as PostCard } from "./PostCard";
+export { default as PostList } from "./PostList";
+export { default as PostSkeletonList } from "./PostSkeleton";
+export { PostSkeleton } from "./PostSkeleton";

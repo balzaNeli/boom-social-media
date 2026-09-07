@@ -9,10 +9,9 @@ type PostsProps = {
 };
 
 /**
- * Feed de posts pronto para API SQLite.
+ * Feed de posts (mock local).
  * - Usa paginação (limit padrão 2 para demonstrar "Carregar mais" com 4 mocks)
  * - Estados: loading (skeleton), error (retry), empty (PostList trata), hasMore (botão)
- * - Troca mock -> API real via VITE_API_URL em src/services/postService.ts
  */
 export default function Posts({ limit = 2, circleId }: PostsProps) {
   const { posts, loading, loadingMore, error, hasMore, total, loadMore, refetch } =
@@ -56,7 +55,7 @@ export default function Posts({ limit = 2, circleId }: PostsProps) {
               {loadingMore ? "Carregando..." : "Carregar mais"}
             </button>
           ) : (
-            <span className="posts-total">Você viu tudo por enquanto ✨</span>
+            <span className="posts-total">Fim.</span>
           )}
 
           {loadingMore && (

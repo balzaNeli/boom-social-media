@@ -1,0 +1,17 @@
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border: 0;
+  border-radius: var(--radius-pill);
+  background: var(--muted);
+  color: var(--foreground);
+  cursor: pointer;
+  transition: background var(--duration-fast) var(--ease-calm);
+}
+
+.theme-toggle:hover {
+  background: var(--border);
+}

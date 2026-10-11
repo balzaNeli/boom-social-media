@@ -1,83 +1,114 @@
 .login-card-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh; /* Garante que o container ocupe toda a altura da tela */
+  width: 100%;
+  max-width: 440px;
 }
 
 .login-card-box {
-  width: 100%;
-  max-width: 420px;
-  
-  /* Mantém a altura presa estritamente ao conteúdo */
-  height: fit-content;
-  max-height: fit-content;
-  align-self: center;
-  
-  margin: 40px auto;
-  padding: 28px 32px;
-  border: 1px solid var(--boom-ink);
-  border-radius: 8px;
-  background: var(--boom-cream-soft, #FFFBF5);
-  box-shadow: var(--shadow-md, 0 8px 24px rgba(44,42,38,0.08));
-  box-sizing: border-box;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  background: var(--card);
+  padding: 24px;
 }
-.login-card-content form > div {
-  margin-bottom: 14px;
+
+@media (min-width: 768px) {
+  .login-card-box {
+    padding: 32px;
+  }
 }
-label {
-  display: block;
-  margin-bottom: 8px;
-  color: #333333;
-  font-weight: bold;
-  font-size: 14px;
+
+.login-card-title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 36px;
+  line-height: 38px;
+  color: var(--foreground);
 }
-input {
-  width: 100%;
-  padding: 12px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  font-size: 16px; 
-  box-sizing: border-box;
-  transition: border-color 0.3s ease;
-}
-input:focus {
-  border-color: black;
-  outline: none; 
-}
-#button  {
-  width: 100%;
-  padding: 14px;
-  background-color: var(--boom-sage-bg);
-  color: white;
-  border: none;
-  border-radius: 4px;
+
+.login-card-subtitle {
+  margin: 8px 0 0;
   font-size: 16px;
-  font-weight: bold;
+  line-height: 26px;
+  color: var(--muted-foreground);
+}
+
+.login-card-content form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.field label {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  color: var(--foreground);
+}
+
+.field input {
+  min-height: 44px;
+  padding: 0 16px;
+  border: 1px solid var(--input);
+  border-radius: var(--radius-xl);
+  background: var(--card);
+  color: var(--foreground);
+  font-size: 16px;
+}
+
+.field input::placeholder {
+  color: var(--subtle);
+}
+
+.login-notice {
+  margin: 0;
+  font-size: 14px;
+  line-height: 22px;
+  color: var(--muted-foreground);
+}
+
+.login-submit {
+  min-height: 48px;
+  border: 0;
+  border-radius: var(--radius-pill);
+  background: var(--primary);
+  color: var(--primary-foreground);
+  font-size: 16px;
+  font-weight: 600;
   cursor: pointer;
-  transition: background-color 0.3s ease;
-  margin-top: 30px;
+  transition:
+    background var(--duration-fast) var(--ease-calm),
+    transform var(--duration-fast) var(--ease-calm);
 }
 
-
-#button:hover {
-  background-color: rgba(33, 39, 34, 0.774);
+.login-submit:hover {
+  background: var(--primary-hover);
 }
 
-#botaoAnonimo{
-  flex: 1;
-  padding: 10px 6px;
+.login-submit:active {
+  transform: scale(0.98);
+}
+
+.login-anon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
   margin-top: 12px;
-  margin-left: 12.59rem;
-  background-color: var(--boom-cream-soft);
-  transition: background-color 0.3s ease;
-  cursor: pointer;
-  font-weight: bold;
-  border-radius: 4px;
-
+  width: 100%;
+  border-radius: var(--radius-pill);
+  color: var(--link);
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+  text-underline-offset: 4px;
 }
 
-#botaoAnonimo:hover{
-  background-color: rgb(250, 231, 191);
-  
+.login-anon:hover {
+  text-decoration: underline;
 }

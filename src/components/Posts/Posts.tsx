@@ -1,24 +1,24 @@
-import { usePaginatedPosts } from "../../hooks/usePosts";
+import type { Post } from "../../types/post";
 import PostList from "./PostList";
 import PostSkeletonList from "./PostSkeleton";
+import Burst from "../shared/Burst";
 import "./Posts.css";
 
 type PostsProps = {
-  limit?: number;
-  circleId?: string;
+  posts: Post[];
+  loading?: boolean;
+  error?: string | null;
+  onRetry?: () => void;
 };
 
 /**
- * Feed de posts (mock local).
- * - Usa paginação (limit padrão 2 para demonstrar "Carregar mais" com 4 mocks)
- * - Estados: loading (skeleton), error (retry), empty (PostList trata), hasMore (botão)
+ * Feed de posts (frontend puro).
+ * - Recebe tudo via props; busca e paginação voltam com o backend real.
+ * - Estados: loading (skeleton), error (retry), lista/vazio (PostList trata).
  */
-export default function Posts({ limit = 2, circleId }: PostsProps) {
-  const { posts, loading, loadingMore, error, hasMore, total, loadMore, refetch } =
-    usePaginatedPosts({ limit, circleId });
-
+export default function Posts({ posts, loading = false, error = null, onRetry }: PostsProps) {
   if (loading) {
-    return <PostSkeletonList count={limit} />;
+    return <PostSkeletonList count={posts.length || 2} />;
   }
 
   if (error) {
@@ -26,7 +26,7 @@ export default function Posts({ limit = 2, circleId }: PostsProps) {
       <div className="posts-feed">
         <div className="posts-error" role="alert">
           <p>Não foi possível carregar as faíscas: {error}</p>
-          <button type="button" onClick={refetch}>
+          <button type="button" onClick={onRetry}>
             Tentar novamente
           </button>
         </div>
@@ -37,32 +37,11 @@ export default function Posts({ limit = 2, circleId }: PostsProps) {
   return (
     <>
       <PostList posts={posts} />
-
-      {(hasMore || total > 0) && (
-        <div className="posts-feed-footer">
-          <span className="posts-total">
-            {posts.length} de {total} faísca{total !== 1 ? "s" : ""}
-          </span>
-
-          {hasMore ? (
-            <button
-              type="button"
-              className="load-more-btn"
-              onClick={loadMore}
-              disabled={loadingMore}
-              aria-busy={loadingMore}
-            >
-              {loadingMore ? "Carregando..." : "Carregar mais"}
-            </button>
-          ) : (
-            <span className="posts-total">Fim.</span>
-          )}
-
-          {loadingMore && (
-            <div style={{ width: "100%", maxWidth: "680px" }}>
-              <PostSkeletonList count={1} />
-            </div>
-          )}
+      {posts.length > 0 && (
+        <div className="feed-end">
+          <Burst size={32} className="feed-end-burst" />
+          <p className="feed-end-title">Você viu tudo por hoje</p>
+          <p className="feed-end-text">Volte quando quiser, o círculo continua aqui.</p>
         </div>
       )}
     </>

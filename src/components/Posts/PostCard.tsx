@@ -1,39 +1,59 @@
 import { useState } from "react";
+import { Flame } from "lucide-react";
 import type { Post } from "../../types/post";
 import { formatRelativeTime } from "../../utils/formatRelativeTime";
-import tuxFallback from "../../assets/tux.png";
 import "./Posts.css";
 
 type PostCardProps = {
   post: Post;
   onLike?: (postId: string) => void;
-  onComment?: (postId: string) => void;
-  onShare?: (postId: string) => void;
 };
 
-export default function PostCard({ post, onLike, onComment, onShare }: PostCardProps) {
+function initials(name: string) {
+  return name
+    .split(" ")
+    .map((part) => part[0])
+    .slice(0, 2)
+    .join("")
+    .toUpperCase();
+}
+
+export default function PostCard({ post, onLike }: PostCardProps) {
   const [avatarError, setAvatarError] = useState(false);
   const [imageError, setImageError] = useState(false);
+  const [sent, setSent] = useState(false);
 
   const timeLabel = formatRelativeTime(post.createdAt);
   const showImage = Boolean(post.imageUrl) && !imageError;
 
+  const sendWarmth = () => {
+    setSent(true);
+    onLike?.(post.id);
+  };
+
   return (
     <article className="post-card">
-      <header className="post-card-header">
-        <img
-          src={avatarError ? tuxFallback : post.author.avatarUrl}
-          alt={`Avatar de ${post.author.name}`}
-          className="post-card-image"
-          onError={() => setAvatarError(true)}
-        />
-        <div className="post-meta">
+      <div className="post-avatar-col">
+        {avatarError ? (
+          <span className="post-avatar-fallback" aria-hidden="true">
+            {initials(post.author.name)}
+          </span>
+        ) : (
+          <img
+            src={post.author.avatarUrl}
+            alt={`Avatar de ${post.author.name}`}
+            className="post-avatar"
+            onError={() => setAvatarError(true)}
+          />
+        )}
+      </div>
+
+      <div className="post-body">
+        <header className="post-card-header">
           <h3 className="post-author">{post.author.name}</h3>
           <time dateTime={post.createdAt}>{timeLabel}</time>
-        </div>
-      </header>
+        </header>
 
-      <div className="post-card-content">
         <p className="post-text">{post.content}</p>
         {showImage && (
           <img
@@ -44,34 +64,19 @@ export default function PostCard({ post, onLike, onComment, onShare }: PostCardP
             onError={() => setImageError(true)}
           />
         )}
-      </div>
 
-      <footer className="post-footer">
         <div className="post-actions">
-          <button type="button" aria-label="Curtir postagem" onClick={() => onLike?.(post.id)}>
-            ❤️
-          </button>
-          <button type="button" aria-label="Comentar postagem" onClick={() => onComment?.(post.id)}>
-            💬
-          </button>
-          <button type="button" aria-label="Compartilhar postagem" onClick={() => onShare?.(post.id)}>
-            🔄
+          <button
+            type="button"
+            className={sent ? "warmth-btn sent" : "warmth-btn"}
+            onClick={sendWarmth}
+            aria-label={sent ? "Você enviou calor" : "Enviar calor"}
+          >
+            <Flame size={20} aria-hidden="true" />
+            {sent ? "Você enviou calor" : "Enviar calor"}
           </button>
         </div>
-        <div className="post-stats">
-          <span>
-            {post.likesCount} {post.likesCount === 1 ? "curtida" : "curtidas"}
-          </span>
-          {typeof post.commentsCount === "number" && (
-            <span className="post-stats-separator">·</span>
-          )}
-          {typeof post.commentsCount === "number" && (
-            <span>
-              {post.commentsCount} {post.commentsCount === 1 ? "comentário" : "comentários"}
-            </span>
-          )}
-        </div>
-      </footer>
+      </div>
     </article>
   );
 }

@@ -1,19 +1,18 @@
 .home-layout {
   display: flex;
-  min-height: calc(100vh - var(--header-height));
+  align-items: stretch;
+  min-height: calc(100vh - 57px);
 }
 
 .home-content {
   flex: 1;
-  margin-left: var(--sidebar-width);
-  min-width: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  width: 100%;
+  max-width: var(--feed-max);
+  margin: 0 auto;
 }
 
-@media (max-width: 768px) {
-  .home-content {
-    margin-left: 0;
+@media (max-width: 767px) {
+  .home-layout .sidebar {
+    display: none;
   }
 }

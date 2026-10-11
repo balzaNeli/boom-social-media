@@ -1,0 +1,19 @@
+.sobre-content {
+  padding: 48px 24px;
+}
+
+.sobre-title {
+  margin: 0 0 16px;
+  font-family: var(--font-display);
+  font-size: 48px;
+  line-height: 48px;
+  color: var(--foreground);
+}
+
+.sobre-content p {
+  margin: 0;
+  max-width: 65ch;
+  font-size: 16px;
+  line-height: 26px;
+  color: var(--muted-foreground);
+}

@@ -1,58 +1,88 @@
 .sidebar {
-  position: fixed;
-  top: var(--header-height);
-  left: 0;
-  width: var(--sidebar-width);
-  height: calc(100vh - var(--header-height));
-  height: calc(100dvh - var(--header-height));
-  background: var(--boom-ink);
-  color: var(--boom-cream);
   display: flex;
   flex-direction: column;
-  padding: 16px 12px;
-  box-sizing: border-box;
-  border-right: 1px solid var(--border-strong);
-  z-index: 10;
-  overflow-y: auto;
-  transition: transform var(--duration-base) var(--ease-out);
+  justify-content: space-between;
+  gap: 24px;
+  width: var(--sidebar-width);
+  padding: 16px;
+  background: var(--background);
+  border-right: 1px solid var(--border);
 }
 
-.sidebar-nav ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
+.sidebar-nav {
   display: flex;
   flex-direction: column;
   gap: 4px;
 }
 
-.sidebar-nav li {
-  list-style: none;
+.side-link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 48px;
+  padding: 0 16px;
+  border-radius: var(--radius-pill);
+  font-size: 16px;
+  font-weight: 500;
+  text-decoration: none;
+  color: var(--foreground);
+  transition: background var(--duration-fast) var(--ease-calm);
 }
 
-.sidebar-nav a {
-  display: block;
-  padding: 10px 12px;
-  border-radius: var(--radius-xs);
-  color: var(--boom-cream);
-  text-decoration: none;
+.side-link:hover {
+  background: var(--muted);
+}
+
+.side-link.active {
+  background: var(--secondary);
+  color: var(--secondary-foreground);
+  font-weight: 600;
+}
+
+.invite-card {
+  padding: 16px;
+  border-radius: var(--radius-xl);
+  background: var(--muted);
+  color: var(--foreground);
+}
+
+.invite-title {
+  margin: 8px 0 4px;
   font-size: 14px;
   font-weight: 500;
-  transition: background var(--duration-fast) var(--ease-out),
-              color var(--duration-fast) var(--ease-out);
+  line-height: 20px;
 }
 
-.sidebar-nav a:hover {
-  background: rgba(255, 251, 245, 0.08);
-  color: var(--boom-cream-soft);
+.invite-text {
+  margin: 0;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 16px;
+  color: var(--muted-foreground);
 }
 
-.sidebar-nav a:active {
-  background: rgba(255, 251, 245, 0.12);
-}
-
-@media (max-width: 768px) {
+@media (max-width: 1023px) {
   .sidebar {
-    transform: translateX(-100%);
+    width: 72px;
+    align-items: center;
+    padding: 16px 8px;
+  }
+
+  .side-link {
+    justify-content: center;
+    padding: 0;
+    width: 48px;
+  }
+
+  .side-link span {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+  }
+
+  .invite-card {
+    display: none;
   }
 }

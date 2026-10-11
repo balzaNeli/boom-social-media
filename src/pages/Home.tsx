@@ -10,7 +10,8 @@ export default function Home(){
         <div className="home-layout">
             <Sidebar/>
             <main className="home-content">
-                <Posts limit={2} />
+                {/* Backend futuro: buscar posts e passar via props */}
+                <Posts posts={[]} />
             </main>
         </div>
         </>

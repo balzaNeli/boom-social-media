@@ -113,6 +113,16 @@ body {
   outline-offset: 2px;
 }
 
+/* Título só para leitor de tela (um h1 por página, DS 10) */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
 /* Movimento lento; respeita reduced-motion (DS 9/10) */
 @media (prefers-reduced-motion: reduce) {
   html {

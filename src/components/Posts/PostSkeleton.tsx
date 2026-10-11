@@ -33,7 +33,7 @@ export function PostSkeleton() {
 
 export default function PostSkeletonList({ count = 3 }: PostSkeletonProps) {
   return (
-    <div className="posts-feed">
+    <div className="posts-feed" role="status" aria-label="Carregando faíscas">
       {Array.from({ length: count }).map((_, i) => (
         <PostSkeleton key={i} />
       ))}

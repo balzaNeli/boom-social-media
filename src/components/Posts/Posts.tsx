@@ -1,6 +1,7 @@
 import type { Post } from "../../types/post";
 import PostList from "./PostList";
 import PostSkeletonList from "./PostSkeleton";
+import { AlertCircle } from "lucide-react";
 import Burst from "../shared/Burst";
 import "./Posts.css";
 
@@ -25,7 +26,10 @@ export default function Posts({ posts, loading = false, error = null, onRetry }:
     return (
       <div className="posts-feed">
         <div className="posts-error" role="alert">
-          <p>Não foi possível carregar as faíscas: {error}</p>
+          <p>
+            <AlertCircle size={20} aria-hidden="true" />
+            Não foi possível carregar as faíscas: {error}
+          </p>
           <button type="button" onClick={onRetry}>
             Tentar novamente
           </button>
